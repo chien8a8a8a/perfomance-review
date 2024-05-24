@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Show all{% endblock title %}
+
+{% block pagetitle %}
+    {% include "page-title.html" with title="Show all Employee" %}
+    <button onclick="window.location.href='{% url 'create-employee' %}';" type="button"
+            class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+        Create employee
+    </button>
+{% endblock pagetitle %}
+
+{% block content %}
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">
+                Name
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Email
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Contact
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-6 py-4">
+                    {{ employee.name }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ employee.email }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ employee.contact }}
+                </td>
+                <td class="flex items-center px-6 py-4">
+                    <a href="{% url 'edit-employee'  id=employee.id %}"
+                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit
+                    </a>
+                    <a href="{% url 'delete-employee'  id=employee.id %}" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

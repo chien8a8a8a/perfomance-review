@@ -1,0 +1,17 @@
+<!-- Page Title Start -->
+<div class="flex justify-between items-center mb-6">
+    <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">{{ title }}</h4>
+
+    <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
+        <div class="flex items-center gap-2">
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit"
+                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                    Log out
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Page Title End -->
